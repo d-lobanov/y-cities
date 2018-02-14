@@ -1,4 +1,4 @@
-export default function create(onResult, onStop) {
+export default function create(onResult, onStop, onError) {
     const recognition = new webkitSpeechRecognition();
 
     recognition.lang = 'ru-RU';
@@ -14,8 +14,8 @@ export default function create(onResult, onStop) {
         onResult(result);
     };
 
-    recognition.onnomatch = () => onStop;
-    recognition.onerror = () => onStop;
+    recognition.onnomatch = onStop;
+    recognition.onerror = onError;
 
     return recognition;
 }

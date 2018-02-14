@@ -1,9 +1,3 @@
-import createMap from './map.js';
-import Bot from './bot.js';
-import createSpeech from './speechFactory.js';
-import createForm from './form.js';
-import {toHumanReadableCase} from './utils.js';
-
 export default function render(didPlayerWin, cities, onClose) {
     const modal = document.getElementById('modal');
 

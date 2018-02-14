@@ -1,8 +1,8 @@
 import createMap from './map.js';
 import createBot from './bot.js';
-import createSpeech from './speechFactory.js';
+import createSpeech from './speech.js';
 import createForm from './form.js';
-import {DUPLICATION_ERROR, NOT_FOUND_ERROR, ONLY_CYRILLIC_ERROR, WRONG_FIRST_CHAR} from './form.js';
+import {DUPLICATION_ERROR, NOT_FOUND_ERROR, MICROPHONE_ERROR, MICROPHONE_NO_SPEECH, WRONG_FIRST_CHAR} from './form.js';
 import finalModal from './finalModal.js';
 import createTimer from './countdown.js';
 import {toHumanReadableCase, splitByLastValidChar} from './utils.js';
@@ -25,11 +25,14 @@ class Game {
         this.makePlayerMove(word);
     };
 
-    onSpeechError(word) {
+    onSpeechStop() {
         this.form.deactivateMic();
-        this.form.setCity(word);
+        this.form.setError(MICROPHONE_NO_SPEECH);
+    };
 
-        this.makePlayerMove(word);
+    onSpeechError(e) {
+        this.form.deactivateMic();
+        this.form.setError(e.error === 'no-speech' ? MICROPHONE_NO_SPEECH : MICROPHONE_ERROR);
     };
 
     isPairWithLastCity(playerCity) {
@@ -103,7 +106,7 @@ class Game {
 
     start(city) {
         this.bot = createBot();
-        this.speech = createSpeech(this.onSpeechFinished.bind(this));
+        this.speech = createSpeech(this.onSpeechFinished.bind(this), this.onSpeechStop.bind(this), this.onSpeechError.bind(this));
         this.map = createMap(() => this.makePlayerMove(city));
 
         let form = this.form = createForm(this.makePlayerMove.bind(this), this.onSpeech.bind(this));

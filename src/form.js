@@ -2,8 +2,9 @@ import {splitByLastValidChar} from './utils.js';
 
 export const DUPLICATION_ERROR = 1;
 export const NOT_FOUND_ERROR = 2;
-export const ONLY_CYRILLIC_ERROR = 3;
-export const WRONG_FIRST_CHAR = 4;
+export const MICROPHONE_ERROR = 3;
+export const MICROPHONE_NO_SPEECH = 4;
+export const WRONG_FIRST_CHAR = 5;
 
 class Form {
     constructor(onSearch, onSpeech) {
@@ -106,10 +107,13 @@ class Form {
                 message = 'Этот город уже был';
                 break;
             case NOT_FOUND_ERROR:
-                message = 'Не могу найти такой город :(';
+                message = 'Не удалось найти такой город :(';
                 break;
-            case ONLY_CYRILLIC_ERROR:
-                message = 'Вводите только кирилические символы';
+            case MICROPHONE_ERROR:
+                message = 'Не удалось получить доступ к микрофону';
+                break;
+            case MICROPHONE_NO_SPEECH:
+                message = 'Не могу расслышать';
                 break;
             case WRONG_FIRST_CHAR:
                 message = 'Город должен начинаться с другой буквы';

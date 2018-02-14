@@ -1,4 +1,4 @@
-import {getCities, addCity} from './cityStorage.js';
+import {loadCities, addCity} from './cityStorage.js';
 import {splitByLastValidChar} from './utils.js';
 
 const random = set => {
@@ -24,7 +24,7 @@ class Bot {
 
         addCity(playerCity);
 
-        if (!botCities || botCities.length === 0) {
+        if (!botCities || botCities.size === 0) {
             return null;
         }
 
@@ -43,5 +43,5 @@ class Bot {
 }
 
 export default function () {
-    return new Bot(getCities());
+    return new Bot(loadCities());
 };

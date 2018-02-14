@@ -1,4 +1,4 @@
-'use strict';
+import {toHumanReadableCase} from './utils.js';
 
 const DEFAULT_ZOOM = 5;
 
@@ -40,7 +40,7 @@ class Map {
                 }
 
                 this.addGeoObject(geoObject);
-                resolve(city);
+                resolve(toHumanReadableCase(city));
             }).catch((e) => {
                 reject('error');
                 console.log(e);

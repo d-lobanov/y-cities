@@ -3,7 +3,7 @@ import createBot from './bot.js';
 import createSpeech from './speechFactory.js';
 import createForm from './form.js';
 import {DUPLICATION_ERROR, NOT_FOUND_ERROR, ONLY_CYRILLIC_ERROR, WRONG_FIRST_CHAR} from './form.js';
-import finalResult from './finalResult.js';
+import finalModal from './finalModal.js';
 import createTimer from './countdown.js';
 import {toHumanReadableCase, splitByLastValidChar} from './utils.js';
 
@@ -15,7 +15,7 @@ class Game {
     }
 
     addCity(city) {
-        this.cities.push(toHumanReadableCase(city));
+        this.cities.push(city);
     }
 
     onSpeechFinished(word) {
@@ -113,7 +113,7 @@ class Game {
 
     finish(didPlayerWin) {
         this.timer.remove();
-        finalResult(didPlayerWin, this.cities, () => location.reload());
+        finalModal(didPlayerWin, this.cities, () => location.reload());
     }
 }
 

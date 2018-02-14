@@ -30,10 +30,10 @@ const DEFAULT_CITIES = {
     "я": ["Якутск", "Яссы", "Яунде"]
 };
 
-const cities = load();
+const cities = loadCities();
 
-function load() {
-    let storedCities = JSON.parse(localStorage.getItem(CITIES_KEY)) || DEFAULT_CITIES;
+export function loadCities() {
+    let storedCities = JSON.parse(localStorage.getItem(CITIES_KEY)) || Object.assign({}, DEFAULT_CITIES);
 
     Object.keys(storedCities).forEach(key => {
         storedCities[key] = new Set(storedCities[key].concat(DEFAULT_CITIES[key]));
@@ -62,8 +62,4 @@ export function addCity(city) {
     }
 
     save(cities);
-}
-
-export function getCities() {
-    return cities;
 }

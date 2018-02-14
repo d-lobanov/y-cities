@@ -19,7 +19,7 @@ body {
   left: calc(50% - 300px);
   z-index: 10;
   width: 600px;
-  height: 100px;
+  height: 120px;
   min-height: 36px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .2);
   background: #fff;
@@ -37,6 +37,14 @@ fieldset {
   right: 10px;
   top: 10px;
   cursor: pointer;
+  color: #b9b9b9;
+}
+
+fieldset:disabled .fa-microphone:hover {
+  color: #b9b9b9;
+}
+
+fieldset:disabled .city-input {
   color: #b9b9b9;
 }
 
@@ -58,24 +66,37 @@ fieldset {
   margin: 0 auto;
 }
 
-.bot-city-block {
-  padding-top: 5px;
-  height: 30px;
-  display: inline-block;
-}
-
-.bot-city {
+.info-block {
+  padding-top: 20px;
+  height: 25px;
+  width: 100%;
   font-size: .8em;
 }
 
-.bot-city:first-letter {
+.bot-city__last {
   color: #DC3736;
 }
 
-.input-field {
+.timer {
+  float: right;
+}
+
+.timer__warm {
+  color: #7a2222;
+}
+
+.timer__hot {
+  color: #bb2b2b;
+}
+
+.timer__dangerous {
+  color: #ff3938;
+}
+
+.city-input {
   padding-left: 5px;
   font-size: 24px;
-  width: 100%;
+  width: calc(100% - 9px);
   height: 40px;
   line-height: 1.2em;
   color: #000;
@@ -190,4 +211,11 @@ fieldset {
   to {
     width: 1.25em;
   }
+}
+
+.validation-error {
+  color: #DC3736;
+  font-size: .6em;
+  padding-top: 2px;
+  float: right;
 }

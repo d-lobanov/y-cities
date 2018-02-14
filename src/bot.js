@@ -1,4 +1,5 @@
 import {getCities, addCity} from './cityStorage.js';
+import {splitByLastValidChar} from './utils.js';
 
 const random = set => {
     let limit = Math.floor(Math.random() * set.size);
@@ -18,10 +19,12 @@ class Bot {
     }
 
     ejectRandomPair(playerCity) {
-        const firstChar = playerCity[playerCity.length - 1].toLowerCase();
+        const firstChar = splitByLastValidChar(playerCity).char;
         const botCities = this.cities[firstChar];
 
-        if (botCities.length === 0) {
+        addCity(playerCity);
+
+        if (!botCities || botCities.length === 0) {
             return null;
         }
 

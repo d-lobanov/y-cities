@@ -1,6 +1,6 @@
 'use strict';
 
-const DEFAULT_ZOOM = 4;
+const DEFAULT_ZOOM = 5;
 
 const sanitizeCityName = city => city.trim().toLowerCase().replace(/-/, ' ').replace('ё', 'е');
 
@@ -21,7 +21,7 @@ class Map {
     };
 
     isSameCity(geoObject, city) {
-        const name = sanitizeCityName(geoObject.properties.get('name'));
+        const name = sanitizeCityName(geoObject.properties.get('name')).replace(/^город\s*/, '');
         const type = geoObject.properties.get('metaDataProperty.GeocoderMetaData.kind');
 
         return ['province', 'locality'].includes(type) && name == city;

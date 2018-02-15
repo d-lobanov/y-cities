@@ -66,6 +66,7 @@ class Form {
 
         this.botCity.classList.remove('loading');
         this.botCity.innerHTML = `${botCity.beginning}<span class="bot-city_active">${botCity.char}</span>${botCity.end}`;
+        this.botCity.title = `Вам на ${botCity.char}`;
     }
 
     activateMic() {
@@ -126,11 +127,11 @@ class Form {
     render() {
         this.formBlock.innerHTML = `
             <div class="info-block">
-               <span class="bot-city"></span><span class="timer"></span>               
+               <span class="bot-city"></span><span class="timer" title="Времени осталось"></span>               
             </div>
             <form>
                 <fieldset>
-                    <i class="fa fa-microphone"></i>
+                    <i class="fa fa-microphone" title="Включить микрофон"></i>
                     <input name="city" placeholder="Введите город" autocomplete="off" class="city-input" id="city-input"/>
                     <div class="validation-error"></div>
                 </fieldset>

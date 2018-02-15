@@ -47,13 +47,13 @@ class Game {
     makePlayerMove(playerCity) {
         playerCity = toHumanReadableCase(playerCity.trim());
 
-        // if (!this.isPairWithLastCity(playerCity)) {
-        //     return this.form.setError(WRONG_FIRST_CHAR);
-        // }
-        //
-        // if (this.wasAlreadyInGame(playerCity)) {
-        //     return this.form.setError(DUPLICATION_ERROR);
-        // }
+        if (!this.isPairWithLastCity(playerCity)) {
+            return this.form.setError(WRONG_FIRST_CHAR);
+        }
+
+        if (this.wasAlreadyInGame(playerCity)) {
+            return this.form.setError(DUPLICATION_ERROR);
+        }
 
         this.form.disable();
 

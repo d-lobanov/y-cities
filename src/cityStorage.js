@@ -34,12 +34,13 @@ const cities = loadCities();
 
 export function loadCities() {
     let storedCities = JSON.parse(localStorage.getItem(CITIES_KEY)) || Object.assign({}, DEFAULT_CITIES);
+    let r = {};
 
     Object.keys(storedCities).forEach(key => {
-        storedCities[key] = new Set(storedCities[key].concat(DEFAULT_CITIES[key]));
+        r[key] = new Set(storedCities[key].concat(DEFAULT_CITIES[key]).map(toHumanReadableCase));
     });
 
-    return storedCities;
+    return r;
 }
 
 function save(cities) {

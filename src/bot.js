@@ -39,6 +39,8 @@ class Bot {
         const firstChar = city[0].toLowerCase();
 
         this.cities[firstChar].delete(city);
+
+        return city;
     }
 }
 

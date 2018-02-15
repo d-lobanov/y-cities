@@ -65,18 +65,18 @@ class Form {
         botCity = splitByLastValidChar(botCity);
 
         this.botCity.classList.remove('loading');
-        this.botCity.innerHTML = `${botCity.beginning}<span class="bot-city__last">${botCity.char}</span>${botCity.end}`;
+        this.botCity.innerHTML = `${botCity.beginning}<span class="bot-city_active">${botCity.char}</span>${botCity.end}`;
     }
 
     activateMic() {
         this.isListening = true;
         this.setError('');
-        this.mic.classList.add('fa-microphone__active');
+        this.mic.classList.add('fa-microphone_active');
     }
 
     deactivateMic() {
         this.isListening = false;
-        this.mic.classList.remove('fa-microphone__active');
+        this.mic.classList.remove('fa-microphone_active');
     }
 
     setCity(word) {
@@ -86,9 +86,9 @@ class Form {
     updateTimer(time) {
         const timer = this.formBlock.querySelector('.timer');
         const priorityClass =
-            time < 10 ? 'timer__dangerous' :
-                time < 20 ? 'timer__hot' :
-                    time < 30 ? 'timer__warm' : '';
+            time < 10 ? 'timer_dangerous' :
+                time < 20 ? 'timer_hot' :
+                    time < 30 ? 'timer_warm' : '';
 
         time = time.toString().padStart(2, 0);
         timer.innerText = `00:${time}`;

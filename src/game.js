@@ -7,8 +7,6 @@ import finalModal from './finalModal.js';
 import createTimer from './countdown.js';
 import {toHumanReadableCase, splitByLastValidChar} from './utils.js';
 
-const MINUTE_IN_MILICESONDS = 60 * 1000;
-
 class Game {
     constructor() {
         this.cities = [];
@@ -49,13 +47,13 @@ class Game {
     makePlayerMove(playerCity) {
         playerCity = toHumanReadableCase(playerCity.trim());
 
-        if (!this.isPairWithLastCity(playerCity)) {
-            return this.form.setError(WRONG_FIRST_CHAR);
-        }
-
-        if (this.wasAlreadyInGame(playerCity)) {
-            return this.form.setError(DUPLICATION_ERROR);
-        }
+        // if (!this.isPairWithLastCity(playerCity)) {
+        //     return this.form.setError(WRONG_FIRST_CHAR);
+        // }
+        //
+        // if (this.wasAlreadyInGame(playerCity)) {
+        //     return this.form.setError(DUPLICATION_ERROR);
+        // }
 
         this.form.disable();
 
@@ -76,10 +74,10 @@ class Game {
             });
     };
 
-    makeBotMove(playerCity) {
+    makeBotMove(playerCity, defaultCity) {
         this.form.disable();
 
-        const botCity = this.bot.ejectRandomPair(playerCity);
+        const botCity = playerCity ? this.bot.ejectRandomPair(playerCity) : this.bot.forget(defaultCity);
 
         if (!botCity) {
             return this.finish(true);
@@ -107,7 +105,7 @@ class Game {
     start(city) {
         this.bot = createBot();
         this.speech = createSpeech(this.onSpeechFinished.bind(this), this.onSpeechStop.bind(this), this.onSpeechError.bind(this));
-        this.map = createMap(() => this.makePlayerMove(city));
+        this.map = createMap(() => this.makeBotMove(null, city));
 
         let form = this.form = createForm(this.makePlayerMove.bind(this), this.onSpeech.bind(this));
 

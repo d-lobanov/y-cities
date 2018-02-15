@@ -52,11 +52,11 @@ fieldset:disabled .city-input {
   color: #000;
 }
 
-.fa-microphone__active {
+.fa-microphone_active {
   color: #DC3736;
 }
 
-.fa-microphone__active:hover {
+.fa-microphone_active:hover {
   color: #dc0006;
 }
 
@@ -73,7 +73,7 @@ fieldset:disabled .city-input {
   font-size: .8em;
 }
 
-.bot-city__last {
+.bot-city_active {
   color: #DC3736;
 }
 
@@ -81,15 +81,15 @@ fieldset:disabled .city-input {
   float: right;
 }
 
-.timer__warm {
+.timer_warm {
   color: #7a2222;
 }
 
-.timer__hot {
+.timer_hot {
   color: #bb2b2b;
 }
 
-.timer__dangerous {
+.timer_dangerous {
   color: #ff3938;
 }
 
@@ -198,7 +198,7 @@ fieldset:disabled .city-input {
   -webkit-animation: ellipsis steps(4, end) 900ms infinite;
   animation: ellipsis steps(4, end) 900ms infinite;
   content: "\2026";
-  width: 0px;
+  width: 0;
 }
 
 @keyframes ellipsis {
